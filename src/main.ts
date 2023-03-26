@@ -1,4 +1,7 @@
 import './style.css';
+import diffStyles from './diff2html.min.css?inline';
+import diffCustomStyles from './diff2html-custom.css?inline';
+
 import { createPatch } from 'diff';
 import { parse, html } from 'diff2html';
 
@@ -16,7 +19,7 @@ compareForm.addEventListener("submit", e => {
     const rightText = rightInput.value;
 
     const diff = createPatch("file_name", leftText, rightText);
-    const diffJson = parse(diff)[0];
+    const [diffJson] = parse(diff);
     if (diffJson.addedLines === 0 && diffJson.deletedLines === 0) {
         // Identical content.
         if (diffShadowHost.shadowRoot) {
@@ -24,11 +27,24 @@ compareForm.addEventListener("submit", e => {
         }
         identicalMessageBanner.classList.toggle("hidden", false);
     } else {
-        const shadowDom = diffShadowHost.shadowRoot ?? diffShadowHost.attachShadow({ mode: "open" });
-        const css = '<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />';
+        let shadowDom = initializeShadowDom(diffShadowHost, [diffStyles, diffCustomStyles]);
         const diffHtml = html([diffJson], { outputFormat: "side-by-side", diffStyle: "char" });
-        shadowDom.innerHTML = `<head>${css}</head>${diffHtml}`;
+        shadowDom.innerHTML = diffHtml;
 
         identicalMessageBanner.classList.toggle("hidden", true);
     }
 });
+
+function initializeShadowDom(host: HTMLElement, styles: string[]) {
+    if (host.shadowRoot) {
+        return host.shadowRoot;
+    }
+    const shadowDom = host.attachShadow({ mode: "open" });
+    const sheets = styles.map(style => {
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(style);
+        return sheet;
+    })
+    shadowDom.adoptedStyleSheets = sheets;
+    return shadowDom;
+}

@@ -1,0 +1,8 @@
+:host {
+    all: initial;
+}
+
+.d2h-file-list-wrapper,
+.d2h-file-header {
+    display: none !important;
+}
