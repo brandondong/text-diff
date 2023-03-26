@@ -6,7 +6,6 @@ import { createPatch } from 'diff';
 import { parse, html } from 'diff2html';
 
 const diffShadowHost = document.getElementById("diff-shadow-host")!;
-const identicalMessageBanner = document.getElementById("identical-message")!;
 
 const compareForm = document.getElementById("compare-form")!;
 const leftInput = document.getElementById("left-input") as HTMLTextAreaElement;
@@ -20,19 +19,9 @@ compareForm.addEventListener("submit", e => {
 
     const diff = createPatch("file_name", leftText, rightText);
     const [diffJson] = parse(diff);
-    if (diffJson.addedLines === 0 && diffJson.deletedLines === 0) {
-        // Identical content.
-        if (diffShadowHost.shadowRoot) {
-            diffShadowHost.shadowRoot.innerHTML = "";
-        }
-        identicalMessageBanner.classList.toggle("hidden", false);
-    } else {
-        let shadowDom = initializeShadowDom(diffShadowHost, [diffStyles, diffCustomStyles]);
-        const diffHtml = html([diffJson], { outputFormat: "side-by-side", diffStyle: "char" });
-        shadowDom.innerHTML = diffHtml;
-
-        identicalMessageBanner.classList.toggle("hidden", true);
-    }
+    let shadowDom = initializeShadowDom(diffShadowHost, [diffStyles, diffCustomStyles]);
+    const diffHtml = html([diffJson], { outputFormat: "side-by-side", diffStyle: "char" });
+    shadowDom.innerHTML = diffHtml;
 });
 
 function initializeShadowDom(host: HTMLElement, styles: string[]) {

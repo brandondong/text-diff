@@ -7,25 +7,29 @@
   <title>Text Diff</title>
 </head>
 
-<body class="px-10 font-mono">
+<body class="px-10">
   <div class="max-w-5xl mx-auto min-h-screen flex flex-col">
     <div class="grow pt-8">
       <div id="diff-shadow-host"></div>
-      <span id="identical-message" class="hidden">Identical</span>
     </div>
-    <div class="sticky bottom-0 py-8 bg-white">
-      <form id="compare-form" class="text-right">
-        <div class="flex gap-x-4">
-          <textarea id="left-input"
-            class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus:ring-1 focus:border-blue-500"
-            rows="8"></textarea>
-          <textarea id="right-input"
-            class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus:ring-1 focus:border-blue-500"
-            rows="8"></textarea>
-        </div>
-        <button
-          class="mt-4 font-sans text-white bg-sky-500 px-5 py-2 rounded-lg shadow-md hover:bg-sky-600 outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">Compare</button>
-      </form>
+    <div class="sticky bottom-0 pt-4 pb-8">
+      <details class="bg-white border border-gray-300 rounded shadow-lg" open>
+        <summary class="p-4 cursor-pointer select-none bg-slate-100 hover:bg-slate-50 transition-colors duration-300">
+          Comparison text
+        </summary>
+        <form id="compare-form" class="text-right px-4 py-5">
+          <div class="flex gap-x-4 font-mono">
+            <textarea id="left-input" placeholder="Before" autofocus
+              class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus:ring-1 focus:border-blue-500"
+              rows="8"></textarea>
+            <textarea id="right-input" placeholder="After"
+              class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus:ring-1 focus:border-blue-500"
+              rows="8"></textarea>
+          </div>
+          <button
+            class="mt-4 text-white bg-sky-500 px-5 py-2 rounded-lg shadow-md hover:bg-sky-600 outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">Compare</button>
+        </form>
+      </details>
     </div>
   </div>
 
