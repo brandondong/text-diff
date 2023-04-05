@@ -22,7 +22,7 @@ compareForm.addEventListener("submit", e => {
     const [diffJson] = parse(diff);
     // Shadow DOM to stop tailwind reset from applying to diff UI library.
     let shadowDom = initializeShadowDom(diffShadowHost, [diffStyles, diffCustomStyles]);
-    const diffHtml = html([diffJson], { outputFormat: "side-by-side", diffStyle: "char" });
+    const diffHtml = html([diffJson], { outputFormat: "side-by-side", diffStyle: "word" });
     shadowDom.innerHTML = diffHtml;
 
     // Automatically close the details panel.

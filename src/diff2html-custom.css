@@ -6,3 +6,8 @@
 .d2h-file-header {
     display: none !important;
 }
+
+.d2h-code-line-ctn del,
+.d2h-code-line-ctn ins {
+    vertical-align: baseline;
+}
