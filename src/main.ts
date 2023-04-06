@@ -3,7 +3,6 @@ import diffStyles from './diff2html.min.css?inline';
 import diffCustomStyles from './diff2html-custom.css?inline';
 
 import { createPatch } from 'diff';
-import { parse, html } from 'diff2html';
 
 const diffShadowHost = document.getElementById("diff-shadow-host")!;
 
@@ -19,11 +18,11 @@ compareForm.addEventListener("submit", e => {
     const rightText = rightInput.value;
 
     const diff = createPatch("file_name", leftText, rightText);
-    const [diffJson] = parse(diff);
     // Shadow DOM to stop tailwind reset from applying to diff UI library.
     let shadowDom = initializeShadowDom(diffShadowHost, [diffStyles, diffCustomStyles]);
-    const diffHtml = html([diffJson], { outputFormat: "side-by-side", diffStyle: "word" });
-    shadowDom.innerHTML = diffHtml;
+    // @ts-ignore
+    const diff2htmlUi = new Diff2HtmlUI(shadowDom, diff, { outputFormat: "side-by-side", diffStyle: "word", drawFileList: false });
+    diff2htmlUi.draw();
 
     // Automatically close the details panel.
     detailsForm.removeAttribute("open");

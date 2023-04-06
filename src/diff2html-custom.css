@@ -2,12 +2,11 @@
     all: initial;
 }
 
-.d2h-file-list-wrapper,
 .d2h-file-header {
     display: none !important;
 }
 
 .d2h-code-line-ctn del,
 .d2h-code-line-ctn ins {
-    vertical-align: baseline;
+    vertical-align: baseline !important;
 }

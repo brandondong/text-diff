@@ -5,15 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Text Diff</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html-ui.min.js"></script>
 </head>
 
 <body class="px-10">
-  <div class="max-w-5xl mx-auto min-h-screen flex flex-col">
+  <div class="max-w-7xl mx-auto min-h-screen flex flex-col">
     <div class="grow pt-8">
       <div id="diff-shadow-host"></div>
     </div>
     <div class="sticky bottom-0 pt-4 pb-8">
-      <details id="details-form" class="bg-white border border-gray-300 rounded shadow-lg" open>
+      <details id="details-form" class="max-w-5xl mx-auto bg-white border border-gray-300 rounded shadow-lg" open>
         <summary
           class="p-4 cursor-pointer select-none bg-slate-100 hover:bg-slate-50 transition-colors duration-300 outline-none focus-visible:ring-2">
           Comparison text
@@ -21,10 +22,10 @@
         <form id="compare-form" class="text-right px-4 py-5">
           <div class="flex gap-x-4 font-mono">
             <textarea id="left-input" placeholder="Before" autofocus
-              class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus-visible:ring-1 focus-visible:border-blue-500"
+              class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus-visible:ring-1 focus-visible:border-blue-500 overscroll-contain"
               rows="8"></textarea>
             <textarea id="right-input" placeholder="After"
-              class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus-visible:ring-1 focus-visible:border-blue-500"
+              class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus-visible:ring-1 focus-visible:border-blue-500 overscroll-contain"
               rows="8"></textarea>
           </div>
           <button
