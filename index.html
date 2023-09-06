@@ -18,7 +18,7 @@
           class="p-4 cursor-pointer select-none bg-slate-100 hover:bg-slate-50 transition-colors duration-300 outline-none focus-visible:ring-2">
           Comparison text
         </summary>
-        <form id="compare-form" class="text-right px-4 py-5">
+        <form id="compare-form" class="px-4 py-5">
           <div class="flex gap-x-4 font-mono">
             <textarea id="left-input" placeholder="Before" autofocus
               class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus-visible:ring-1 focus-visible:border-blue-500 overscroll-contain"
@@ -27,8 +27,12 @@
               class="block grow resize-none text-sm leading-tight p-2 text-gray-800 border border-gray-500 rounded-sm outline-none focus-visible:ring-1 focus-visible:border-blue-500 overscroll-contain"
               rows="8"></textarea>
           </div>
-          <button
-            class="mt-4 text-white bg-sky-500 px-5 py-2 rounded-lg shadow-md hover:bg-sky-600 outline-none focus-visible:ring-2 ring-sky-400 ring-offset-2">Compare</button>
+          <div class="flex justify-between items-center mt-4">
+            <label class="flex items-center gap-x-1 text-sm select-none"><input id="whitespace-checkbox" type="checkbox"
+                checked />Ignore whitespace</label>
+            <button
+              class="text-white bg-sky-500 px-5 py-2 rounded-lg shadow-md hover:bg-sky-600 outline-none focus-visible:ring-2 ring-sky-400 ring-offset-2">Compare</button>
+          </div>
         </form>
       </details>
     </div>

@@ -10,6 +10,7 @@ const detailsForm = document.getElementById("details-form")!;
 const compareForm = document.getElementById("compare-form")!;
 const leftInput = document.getElementById("left-input") as HTMLTextAreaElement;
 const rightInput = document.getElementById("right-input") as HTMLTextAreaElement;
+const whitespaceCheckbox = document.getElementById("whitespace-checkbox") as HTMLInputElement;
 
 compareForm.addEventListener("submit", e => {
     e.preventDefault();
@@ -17,7 +18,7 @@ compareForm.addEventListener("submit", e => {
     const leftText = leftInput.value;
     const rightText = rightInput.value;
 
-    const diff = createPatch("file_name", leftText, rightText);
+    const diff = createPatch("file_name", leftText, rightText, undefined, undefined, { ignoreWhitespace: whitespaceCheckbox.checked });
     // Shadow DOM to stop tailwind reset from applying to diff UI library.
     let shadowDom = initializeShadowDom(diffShadowHost, [diffStyles, diffCustomStyles]);
     // @ts-ignore
